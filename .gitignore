@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+Donna_Letters_2.txt
+
+Takeout/
