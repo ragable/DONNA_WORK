@@ -16,6 +16,8 @@ def get(mspan,messages,submessages):
             ndx += 1
             if ndx < len(all_messages):
                 second = all_messages[ndx]
+                print('Submessage')
+                return -1
             else:
                 print(f"{mspan[1]} is out of range, sorry. Bye")
                 return -1    
@@ -48,19 +50,28 @@ def process(infname,mspan):
     submsgnos[-1].append(i)
     ndcs = get(mspan,msgnos,submsgnos)
     if ndcs == -1:
-        return
+        return False
     output = lines[ndcs[0]:ndcs[1]]
-    ofname = f'message{mspan[0]}_sub{mspan[1]}.txt'
+    ofname = f'Messages/message{mspan[0]}.txt'
 
     with open(ofname, "w") as f:
         f.writelines(output)
     for line in output:
         sys.stdout.write(line)
+    return True
 
 
 if __name__ == "__main__":
-    pass
-    #process('Donna_Letters_2.txt',[145,0])
+    i = 3001
+    j = 0
+    while True: 
+        stat = process('Donna_Letters_2.txt',[i,j])    
+        j += 1
+        if i == 4000:
+            break
+        if not stat:
+            i += 1
+            j = 0
 
                        
 
